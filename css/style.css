@@ -521,3 +521,43 @@ body {
         grid-template-columns: 1fr;
     }
 }
+/* Menü Görselleri ve Yapı Tasarımı */
+.menu-item-with-img {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.menu-item-img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #c5a059; /* Altın sarısı çerçeve */
+    flex-shrink: 0;
+}
+
+.menu-item-content {
+    flex-grow: 1;
+}
+/* Menü Görsellerini Küçük Yuvarlak Yapma */
+.menu-item-with-img {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.menu-item-img {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #c5a059; /* Altın sarısı şık çerçeve */
+    flex-shrink: 0;
+}
+
+.menu-item-content {
+    flex-grow: 1;
+}
