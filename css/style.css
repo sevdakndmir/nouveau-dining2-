@@ -561,3 +561,46 @@ body {
 .menu-item-content {
     flex-grow: 1;
 }
+/* Hakkımızda Bölümü - Siyah Tema ve Sabit Boyutlu Görsel */
+.about-section {
+    background-color: #121212;
+    color: #ffffff;
+    padding: 100px 20px;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-image img {
+    width: 450px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #c5a059;
+}
+
+.about-content {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-content h2 {
+    color: #ffffff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    color: #cccccc;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
