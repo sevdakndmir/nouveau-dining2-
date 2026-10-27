@@ -28,13 +28,13 @@
         </div>
         
         <nav class="nav-links">
-            <a href="index.html" class="active">ANASAYFA</a>
-            <a href="hakkimizda.html">HAKKIMIZDA</a>
-            <a href="#menu">MENÜ</a>
-            <a href="#rezervasyon">REZERVASYON</a>
-            <a href="iletisim.html">İLETİŞİM</a>
-        </nav>
-    </header>
+    <a href="index.html">ANASAYFA</a>
+    <a href="hakkimizda.html">HAKKIMIZDA</a>
+    <a href="menu.html">MENÜ</a>
+    <a href="rezervasyon.html">REZERVASYON</a>
+    <a href="iletisim.html">İLETİŞİM</a>
+</nav>
+</header>
 
     <!-- ANA SAYFA HERO ALANI -->
     <section class="hero-section">
@@ -45,8 +45,8 @@
             <p class="slogan">"Gelenekten Geleceğe Uzanan Lezzetler."</p>
             
             <div class="hero-buttons">
-                <a href="#menu" class="btn btn-outline">MENÜYÜ KEŞFET</a>
-                <a href="#rezervasyon" class="btn btn-filled">REZERVASYON</a>
+                <a href="menu.html" class="btn btn-outline">MENÜYÜ KEŞFET</a>
+<a href="rezervasyon.html" class="btn btn-filled">REZERVASYON</a>
             </div>
         </div>
     </section>
@@ -196,227 +196,56 @@
         </div>
     </div>
 </section>
-<!-- Masa Rezervasyonu Bölümü -->
-<section id="rezervasyon" class="reservation-section" style="padding: 80px 20px; background-color: #111; color: #fff; text-align: center;">
-    <div class="reservation-container" style="max-width: 600px; margin: 0 auto; background-color: #181818; padding: 40px; border-radius: 12px; border: 1px solid #c5a059; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-        <span class="sub-title" style="display: block; color: #c5a059; margin-bottom: 8px; font-size: 13px; letter-spacing: 3px; text-transform: uppercase;">YERİNİZİ AYIRTIN</span>
-        <h2 class="section-title" style="color: #fff; margin-bottom: 25px; font-family: serif; font-size: 28px;">Masa Rezervasyonu</h2>
-        
-        <!-- Form -->
-        <form id="reservationForm" onsubmit="handleReservation(event)" style="display: flex; flex-direction: column; gap: 15px;">
-            <input type="text" id="resName" placeholder="Adınız Soyadınız" required style="padding: 14px; border-radius: 6px; border: 1px solid #333; background-color: #222; color: #fff; font-size: 14px; outline: none;">
+<!-- MASA REZERVASYONU BÖLÜMÜ -->
+    <section id="rezervasyon" class="reservation-section" style="padding: 80px 20px; background-color: #000; color: #fff; text-align: center;">
+        <div class="reservation-container" style="max-width: 600px; margin: 0 auto; background-color: #181818; padding: 40px; border-radius: 12px; border: 1px solid #c5a059; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <span class="sub-title" style="display: block; color: #c5a059; margin-bottom: 8px; font-size: 13px; letter-spacing: 3px; text-transform: uppercase;">YERİNİZİ AYIRTIN</span>
+            <h2 class="section-title" style="color: #fff; margin-bottom: 25px; font-family: serif; font-size: 28px;">Masa Rezervasyonu</h2>
             
-            <div style="display: flex; gap: 10px;">
-                <input type="date" id="resDate" required style="flex: 1; padding: 14px; border-radius: 6px; border: 1px solid #333; background-color: #222; color: #fff; font-size: 14px; outline: none;">
-                <input type="time" id="resTime" required style="flex: 1; padding: 14px; border-radius: 6px; border: 1px solid #333; background-color: #222; color: #fff; font-size: 14px; outline: none;">
-            </div>
+            <!-- Form -->
+            <form id="reservationForm" onsubmit="handleReservation(event)" style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" id="resName" placeholder="Adınız Soyadınız" required style="padding: 14px; border-radius: 6px; border: 1px solid #333; background-color: #222; color: #fff; font-size: 14px; outline: none;">
+                
+                <div style="display: flex; gap: 10px;">
+                    <input type="date" id="resDate" required style="flex: 1; padding: 14px; border-radius: 6px; border: 1px solid #333; background-color: #222; color: #fff; font-size: 14px; outline: none;">
+                    <input type="time" id="resTime" required style="flex: 1; padding: 14px; border-radius: 6px; border: 1px solid #333; background-color: #222; color: #fff; font-size: 14px; outline: none;">
+                </div>
 
-            <select id="resGuests" required style="padding: 14px; border-radius: 6px; border: 1px solid #333; background-color: #222; color: #fff; font-size: 14px; outline: none;">
-                <option value="">Kişi Sayısı Seçin</option>
-                <option value="1 Kişi">1 Kişi</option>
-                <option value="2 Kişi">2 Kişi</option>
-                <option value="4 Kişi">4 Kişi</option>
-                <option value="6+ Kişi">6+ Kişi (Grup)</option>
-            </select>
+                <select id="resGuests" required style="padding: 14px; border-radius: 6px; border: 1px solid #333; background-color: #222; color: #fff; font-size: 14px; outline: none;">
+                    <option value="">Kişi Sayısı Seçin</option>
+                    <option value="1 Kişi">1 Kişi</option>
+                    <option value="2 Kişi">2 Kişi</option>
+                    <option value="4 Kişi">4 Kişi</option>
+                    <option value="6+ Kişi">6+ Kişi (Grup)</option>
+                </select>
 
-            <!-- Kroki Butonu -->
-            <div style="text-align: left; margin-top: 5px;">
-                <button type="button" onclick="openMapModal()" style="width: 100%; padding: 14px; background: #222; border: 1px dashed #c5a059; color: #c5a059; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
-                    🗺️ Restoran Krokisinden Masa Seç
-                </button>
-                <input type="hidden" id="selectedTableInput">
-                <div id="selectedTableBadge" style="display: none; margin-top: 10px; padding: 10px; background: rgba(197, 160, 89, 0.15); border: 1px solid #c5a059; color: #c5a059; border-radius: 6px; font-size: 13px; font-weight: bold; text-align: center;"></div>
-            </div>
+                <!-- Kroki Butonu -->
+                <div style="text-align: left; margin-top: 5px;">
+                    <button type="button" onclick="openMapModal()" style="width: 100%; padding: 14px; background: #222; border: 1px dashed #c5a059; color: #c5a059; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                        🗺️ Restoran Krokisinden Masa Seç
+                    </button>
+                    <input type="hidden" id="selectedTableInput">
+                    <div id="selectedTableBadge" style="display: none; margin-top: 10px; padding: 10px; background: rgba(197, 160, 89, 0.15); border: 1px solid #c5a059; color: #c5a059; border-radius: 6px; font-size: 13px; font-weight: bold; text-align: center;"></div>
+                </div>
 
-            <button type="submit" class="btn btn-solid" style="margin-top: 10px; padding: 14px; background-color: #c5a059; color: #111; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; letter-spacing: 1px;">REZERVASYONU ONAYLA</button>
-        </form>
+                <button type="submit" class="btn btn-solid" style="margin-top: 10px; padding: 14px; background-color: #c5a059; color: #111; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 14px; letter-spacing: 1px;">REZERVASYONU ONAYLA</button>
+            </form>
 
-        <!-- Özet Kartı -->
-        <div id="reservationSummary" style="display: none; margin-top: 25px; padding: 20px; background-color: #222; border: 1px solid #c5a059; border-radius: 8px; text-align: left;">
-            <h3 style="color: #c5a059; font-size: 18px; margin-bottom: 10px; text-align: center;">🎉 Rezervasyonunuz Onaylandı!</h3>
-            <p style="color: #ccc; font-size: 14px; text-align: center; margin-bottom: 15px;">Sizi Nouveau Dining'de ağırlamaktan mutluluk duyacağız.</p>
-            <hr style="border: 0; border-top: 1px solid #333; margin-bottom: 15px;">
-            <div style="line-height: 1.8; font-size: 14px; color: #fff;">
-                <p><strong>Misafir:</strong> <span id="summaryName" style="color: #c5a059;"></span></p>
-                <p><strong>Tarih & Saat:</strong> <span id="summaryDateTime" style="color: #c5a059;"></span></p>
-                <p><strong>Kişi Sayısı:</strong> <span id="summaryGuests" style="color: #c5a059;"></span></p>
-                <p><strong>Seçilen Masa:</strong> <span id="summaryTable" style="color: #c5a059;"></span></p>
+            <!-- Özet Kartı -->
+            <div id="reservationSummary" style="display: none; margin-top: 25px; padding: 20px; background-color: #222; border: 1px solid #c5a059; border-radius: 8px; text-align: left;">
+                <h3 style="color: #c5a059; font-size: 18px; margin-bottom: 10px; text-align: center;">🎉 Rezervasyonunuz Onaylandı!</h3>
+                <p style="color: #ccc; font-size: 14px; text-align: center; margin-bottom: 15px;">Sizi Nouveau Dining'de ağırlamaktan mutluluk duyacağız.</p>
+                <hr style="border: 0; border-top: 1px solid #333; margin-bottom: 15px;">
+                <div style="line-height: 1.8; font-size: 14px; color: #fff;">
+                    <p><strong>Misafir:</strong> <span id="summaryName" style="color: #c5a059;"></span></p>
+                    <p><strong>Tarih & Saat:</strong> <span id="summaryDateTime" style="color: #c5a059;"></span></p>
+                    <p><strong>Kişi Sayısı:</strong> <span id="summaryGuests" style="color: #c5a059;"></span></p>
+                    <p><strong>Seçilen Masa:</strong> <span id="summaryTable" style="color: #c5a059;"></span></p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- RESTORAN KROKİ MODALİ -->
-<div id="mapModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 999999; justify-content: center; align-items: center; padding: 15px;">
-    <div style="background: #f4f7f9; color: #333; max-width: 950px; width: 100%; border-radius: 12px; padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); position: relative; max-height: 92vh; overflow-y: auto;">
-        
-        <!-- Üst Bilgilendirme -->
-        <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 12px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
-            <div style="display: flex; gap: 20px; align-items: center; font-size: 13px; color: #666;">
-                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #fff; border: 2px solid #ccc; border-radius: 3px;"></span> Boş Masa</span>
-                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #fff3d1; border: 2px solid #e6b800; border-radius: 3px;"></span> Seçili Masa</span>
-                <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #e0e6ed; border: 2px solid #cbd5e1; border-radius: 3px;"></span> Dolu / Rezerve</span>
-            </div>
-            <div style="font-size: 12px; color: #888; font-style: italic;">💡 İpucu: Pencere kenarları ve bahçe alanı popüler tercihlerdir.</div>
-            <button type="button" onclick="closeMapModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #888; margin-left: auto;">&times;</button>
-        </div>
-
-        <!-- IZGARA PLANI CANVAS -->
-        <div style="background-color: #f7fafc; background-image: radial-gradient(#dce4ec 1px, transparent 1px); background-size: 16px 16px; border: 2px solid #e2e8f0; border-radius: 10px; padding: 25px; position: relative; min-height: 480px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; align-items: center;">
-            
-            <div style="position: absolute; top: 15px; left: 15px; background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">🌿 BAHÇE & TERAS ALANI</div>
-            <div style="position: absolute; top: 15px; right: 15px; background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">👑 VIP SALON & BAR</div>
-            <div style="position: absolute; bottom: 15px; left: 15px; background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">🖼️ PANORAMİK CAM KENARI</div>
-            
-            <div style="position: absolute; top: 70px; right: 15px; background: #1e293b; color: #38bdf8; font-weight: bold; font-size: 12px; padding: 10px 16px; border-radius: 8px;">🍸 KOKTEYL BAR & MAHZEN</div>
-            <div style="position: absolute; bottom: 20px; right: 15px; background: #4c1d95; color: #e9d5ff; font-weight: bold; font-size: 12px; padding: 12px 18px; border-radius: 10px; text-align: center;">🎷 PIANO & SAHNE<br><small style="font-weight: normal; font-size: 10px;">Canlı Müzik</small></div>
-
-            <!-- SOL SÜTUN -->
-            <div style="display: flex; flex-direction: column; gap: 40px; align-items: center; margin-top: 40px;">
-                <div class="kroki-card" onclick="selectCardMasa('Masa 01 (Teras • 4 Kişilik)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 15px 25px; text-align: center; cursor: pointer; width: 130px;">
-                    <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 01</strong>
-                    <small style="color: #64748b; font-size: 11px;">Teras • 4 Kişilik</small>
-                </div>
-
-                <div style="position: relative; background: #e2e8f0; border: 2px solid #cbd5e1; border-radius: 12px; padding: 20px 25px; text-align: center; opacity: 0.6; width: 130px; cursor: not-allowed;">
-                    <strong style="display: block; font-size: 14px; color: #64748b;">Masa 02</strong>
-                    <small style="color: #94a3b8; font-size: 11px; font-weight: bold;">REZERVE</small>
-                </div>
-
-                <div class="kroki-card" onclick="selectCardMasa('Masa 03 (Cam • 2 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 110px; height: 110px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
-                    <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 03</strong>
-                    <small style="color: #64748b; font-size: 10px;">Cam • 2 Kişi</small>
-                </div>
-            </div>
-
-            <!-- ORTA SÜTUN -->
-            <div style="display: flex; flex-direction: column; gap: 35px; align-items: center; margin-top: 20px;">
-                <div class="kroki-card" onclick="selectCardMasa('Masa 04 (Ana Salon • 4 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 130px; height: 130px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
-                    <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 04</strong>
-                    <small style="color: #64748b; font-size: 11px;">Ana Salon • 4 Kişi</small>
-                </div>
-
-                <div class="kroki-card" onclick="selectCardMasa('Masa 05 (Grup / Aile • 6 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 14px; padding: 18px 30px; text-align: center; cursor: pointer; width: 150px;">
-                    <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 05</strong>
-                    <small style="color: #64748b; font-size: 11px;">Grup / Aile • 6 Kişi</small>
-                </div>
-
-                <div class="kroki-card" onclick="selectCardMasa('Masa 06 (Şömine Yanı • 2 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 10px; padding: 15px; text-align: center; cursor: pointer; width: 100px;">
-                    <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 06</strong>
-                    <small style="color: #e11d48; font-size: 10px; font-weight: bold;">🔥 Şömine</small>
-                </div>
-            </div>
-
-            <!-- SAĞ SÜTUN -->
-            <div style="display: flex; flex-direction: column; gap: 50px; align-items: center; margin-top: 60px;">
-                <div class="kroki-card" onclick="selectCardMasa('Masa 07 (VIP Özel Bölüm • 8+ Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 16px; padding: 22px; text-align: center; cursor: pointer; width: 160px;">
-                    <strong style="display: block; font-size: 14px; color: #b45309;">👑 Masa 07 (VIP)</strong>
-                    <small style="color: #d97706; font-size: 11px;">Özel Bölüm • 8+ Kişi</small>
-                </div>
-
-                <div class="kroki-card" onclick="selectCardMasa('Masa 08 (Sahne Önü • 4 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 115px; height: 115px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
-                    <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 08</strong>
-                    <small style="color: #64748b; font-size: 10px;">🎷 Sahne Önü</small>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Alt Butonlar -->
-        <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
-            <button type="button" onclick="closeMapModal()" style="padding: 12px 24px; background: #e2e8f0; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: #475569;">İptal</button>
-            <button type="button" onclick="confirmMasaSelection()" style="padding: 12px 30px; background: #c5a059; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: #111;">Masa Seçimini Onayla</button>
-        </div>
-    </div>
-</div>
-
-<!-- JAVASCRIPT KODLARI -->
-<script>
-    var tempSelectedTable = "";
-
-    function openMapModal() {
-        var modal = document.getElementById('mapModal');
-        if (modal) {
-            modal.style.display = 'flex';
-        }
-    }
-
-    function closeMapModal() {
-        var modal = document.getElementById('mapModal');
-        if (modal) {
-            modal.style.display = 'none';
-        }
-    }
-
-    function selectCardMasa(tableName, cardElement) {
-        tempSelectedTable = tableName;
-        
-        // Diğer masaların vurgusunu sıfırla
-        var cards = document.querySelectorAll('.kroki-card');
-        for (var i = 0; i < cards.length; i++) {
-            cards[i].style.background = "#ffffff";
-            cards[i].style.borderColor = "#cbd5e1";
-            cards[i].style.boxShadow = "none";
-        }
-        
-        // Seçilen masayı sarı yapıp parlat
-        cardElement.style.background = "#fff3d1";
-        cardElement.style.borderColor = "#fbbf24";
-        cardElement.style.boxShadow = "0 0 15px rgba(251, 191, 36, 0.6)";
-    }
-
-    function confirmMasaSelection() {
-        if (!tempSelectedTable) {
-            alert("Lütfen krokiden bir masa seçiniz!");
-            return;
-        }
-        
-        document.getElementById('selectedTableInput').value = tempSelectedTable;
-        var badge = document.getElementById('selectedTableBadge');
-        if (badge) {
-            badge.innerText = "Seçilen Masa: " + tempSelectedTable;
-            badge.style.display = 'block';
-        }
-        
-        closeMapModal();
-    }
-
-    function handleReservation(event) {
-        event.preventDefault();
-
-        var selectedTable = document.getElementById('selectedTableInput').value;
-        if (!selectedTable) {
-            alert("Lütfen önce krokiden bir masa seçiniz!");
-            openMapModal();
-            return;
-        }
-
-        var name = document.getElementById('resName').value;
-        var date = document.getElementById('resDate').value;
-        var time = document.getElementById('resTime').value;
-        var guests = document.getElementById('resGuests').value;
-
-        document.getElementById('summaryName').innerText = name;
-        document.getElementById('summaryDateTime').innerText = date + " - " + time;
-        document.getElementById('summaryGuests').innerText = guests;
-        document.getElementById('summaryTable').innerText = selectedTable;
-
-        document.getElementById('reservationSummary').style.display = 'block';
-
-        // Formu temizle
-        document.getElementById('reservationForm').reset();
-        document.getElementById('selectedTableInput').value = "";
-        document.getElementById('selectedTableBadge').style.display = "none";
-        tempSelectedTable = "";
-    }
-</script>
-
-<!-- FOOTER -->
-<footer class="footer-section">
-    <div class="footer-container">
-        <!-- Footer içeriklerin -->
-    </div>
-</footer>
              <!-- FOOTER -->
     <footer class="footer-section">
         <div class="footer-container">
@@ -425,6 +254,7 @@
                     <div class="brand-logo">
                         <span>ND</span>
                     </div>
+                
                     <span class="footer-brand-title">NOUVEAU DINING</span>
                 </div>
                 <p class="footer-slogan">"Gelenekten Geleceğe Uzanan Lezzetler."</p>
@@ -461,13 +291,168 @@
         loading="lazy" 
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
-</div>  
-</div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2026 Nouveau Dining. Tüm Hakları Saklıdır.</p>
+</iframe>
+            </div>
         </div>
-    </footer>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Nouveau Dining. Tüm Hakları Saklıdır.</p>
+    </div>
+</footer>
+<!-- RESTORAN KROKİ MODALİ -->
+    <div id="mapModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 999999; justify-content: center; align-items: center; padding: 15px;">
+        <div style="background: #f4f7f9; color: #333; max-width: 950px; width: 100%; border-radius: 12px; padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); position: relative; max-height: 92vh; overflow-y: auto;">
+            
+            <!-- Üst Bilgilendirme -->
+            <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 12px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
+                <div style="display: flex; gap: 20px; align-items: center; font-size: 13px; color: #666;">
+                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #fff; border: 2px solid #ccc; border-radius: 3px;"></span> Boş Masa</span>
+                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #fff3d1; border: 2px solid #e6b800; border-radius: 3px;"></span> Seçili Masa</span>
+                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #e0e6ed; border: 2px solid #cbd5e1; border-radius: 3px;"></span> Dolu / Rezerve</span>
+                </div>
+                <div style="font-size: 12px; color: #888; font-style: italic;">💡 İpucu: Pencere kenarları ve bahçe alanı popüler tercihlerdir.</div>
+                <button type="button" onclick="closeMapModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #888; margin-left: auto;">&times;</button>
+            </div>
+
+            <!-- IZGARA PLANI CANVAS -->
+            <div style="background-color: #f7fafc; background-image: radial-gradient(#dce4ec 1px, transparent 1px); background-size: 16px 16px; border: 2px solid #e2e8f0; border-radius: 10px; padding: 25px; position: relative; min-height: 480px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; align-items: center;">
+                
+                <div style="position: absolute; top: 15px; left: 15px; background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">🌿 BAHÇE & TERAS ALANI</div>
+                <div style="position: absolute; top: 15px; right: 15px; background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">👑 VIP SALON & BAR</div>
+                <div style="position: absolute; bottom: 15px; left: 15px; background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">🖼️ PANORAMİK CAM KENARI</div>
+                
+                <div style="position: absolute; top: 70px; right: 15px; background: #1e293b; color: #38bdf8; font-weight: bold; font-size: 12px; padding: 10px 16px; border-radius: 8px;">🍸 KOKTEYL BAR & MAHZEN</div>
+                <div style="position: absolute; bottom: 20px; right: 15px; background: #4c1d95; color: #e9d5ff; font-weight: bold; font-size: 12px; padding: 12px 18px; border-radius: 10px; text-align: center;">🎷 PIANO & SAHNE<br><small style="font-weight: normal; font-size: 10px;">Canlı Müzik</small></div>
+
+                <!-- SOL SÜTUN -->
+                <div style="display: flex; flex-direction: column; gap: 40px; align-items: center; margin-top: 40px;">
+                    <div class="kroki-card" onclick="selectCardMasa('Masa 01 (Teras • 4 Kişilik)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 15px 25px; text-align: center; cursor: pointer; width: 130px;">
+                        <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 01</strong>
+                        <small style="color: #64748b; font-size: 11px;">Teras • 4 Kişilik</small>
+                    </div>
+
+                    <div style="position: relative; background: #e2e8f0; border: 2px solid #cbd5e1; border-radius: 12px; padding: 20px 25px; text-align: center; opacity: 0.6; width: 130px; cursor: not-allowed;">
+                        <strong style="display: block; font-size: 14px; color: #64748b;">Masa 02</strong>
+                        <small style="color: #94a3b8; font-size: 11px; font-weight: bold;">REZERVE</small>
+                    </div>
+
+                    <div class="kroki-card" onclick="selectCardMasa('Masa 03 (Cam • 2 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 110px; height: 110px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
+                        <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 03</strong>
+                        <small style="color: #64748b; font-size: 10px;">Cam • 2 Kişi</small>
+                    </div>
+                </div>
+
+                <!-- ORTA SÜTUN -->
+                <div style="display: flex; flex-direction: column; gap: 35px; align-items: center; margin-top: 20px;">
+                    <div class="kroki-card" onclick="selectCardMasa('Masa 04 (Ana Salon • 4 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 130px; height: 130px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
+                        <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 04</strong>
+                        <small style="color: #64748b; font-size: 11px;">Ana Salon • 4 Kişi</small>
+                    </div>
+
+                    <div class="kroki-card" onclick="selectCardMasa('Masa 05 (Grup / Aile • 6 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 14px; padding: 18px 30px; text-align: center; cursor: pointer; width: 150px;">
+                        <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 05</strong>
+                        <small style="color: #64748b; font-size: 11px;">Grup / Aile • 6 Kişi</small>
+                    </div>
+
+                    <div class="kroki-card" onclick="selectCardMasa('Masa 06 (Şömine Yanı • 2 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 10px; padding: 15px; text-align: center; cursor: pointer; width: 100px;">
+                        <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 06</strong>
+                        <small style="color: #e11d48; font-size: 10px; font-weight: bold;">🔥 Şömine</small>
+                    </div>
+                </div>
+
+                <!-- SAĞ SÜTUN -->
+                <div style="display: flex; flex-direction: column; gap: 50px; align-items: center; margin-top: 60px;">
+                    <div class="kroki-card" onclick="selectCardMasa('Masa 07 (VIP Özel Bölüm • 8+ Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 16px; padding: 22px; text-align: center; cursor: pointer; width: 160px;">
+                        <strong style="display: block; font-size: 14px; color: #b45309;">👑 Masa 07 (VIP)</strong>
+                        <small style="color: #d97706; font-size: 11px;">Özel Bölüm • 8+ Kişi</small>
+                    </div>
+
+                    <div class="kroki-card" onclick="selectCardMasa('Masa 08 (Sahne Önü • 4 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 115px; height: 115px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
+                        <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 08</strong>
+                        <small style="color: #64748b; font-size: 10px;">🎷 Sahne Önü</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Alt Butonlar -->
+            <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
+                <button type="button" onclick="closeMapModal()" style="padding: 12px 24px; background: #e2e8f0; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: #475569;">İptal</button>
+                <button type="button" onclick="confirmMasaSelection()" style="padding: 12px 30px; background: #c5a059; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: #111;">Masa Seçimini Onayla</button>
+            </div>
+        </div>
+    </di
+<!-- JAVASCRIPT KODLARI -->
+    <script>
+        var tempSelectedTable = "";
+
+        function openMapModal() {
+            var modal = document.getElementById('mapModal');
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeMapModal() {
+            var modal = document.getElementById('mapModal');
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        function selectCardMasa(tableName, cardElement) {
+            tempSelectedTable = tableName;
+            var cards = document.querySelectorAll('.kroki-card');
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].style.background = "#ffffff";
+                cards[i].style.borderColor = "#cbd5e1";
+                cards[i].style.boxShadow = "none";
+            }
+            cardElement.style.background = "#fff3d1";
+            cardElement.style.borderColor = "#fbbf24";
+            cardElement.style.boxShadow = "0 0 15px rgba(251, 191, 36, 0.6)";
+        }
+
+        function confirmMasaSelection() {
+            if (!tempSelectedTable) {
+                alert("Lütfen krokiden bir masa seçiniz!");
+                return;
+            }
+            document.getElementById('selectedTableInput').value = tempSelectedTable;
+            var badge = document.getElementById('selectedTableBadge');
+            if (badge) {
+                badge.innerText = "Seçilen Masa: " + tempSelectedTable;
+                badge.style.display = 'block';
+            }
+            closeMapModal();
+        }
+
+        function handleReservation(event) {
+            event.preventDefault();
+            var selectedTable = document.getElementById('selectedTableInput').value;
+            if (!selectedTable) {
+                alert("Lütfen önce krokiden bir masa seçiniz!");
+                openMapModal();
+                return;
+            }
+            var name = document.getElementById('resName').value;
+            var date = document.getElementById('resDate').value;
+            var time = document.getElementById('resTime').value;
+            var guests = document.getElementById('resGuests').value;
+
+            document.getElementById('summaryName').innerText = name;
+            document.getElementById('summaryDateTime').innerText = date + " - " + time;
+            document.getElementById('summaryGuests').innerText = guests;
+            document.getElementById('summaryTable').innerText = selectedTable;
+            document.getElementById('reservationSummary').style.display = 'block';
+
+            document.getElementById('reservationForm').reset();
+            document.getElementById('selectedTableInput').value = "";
+            document.getElementById('selectedTableBadge').style.display = "none";
+            tempSelectedTable = "";
+        }
+    </script>
 
 </body>
 </html>
