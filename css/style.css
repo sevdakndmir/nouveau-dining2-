@@ -803,3 +803,49 @@ body {
         aspect-ratio: 4 / 3;
     }
 }
+/* menu.html: italikleri kaldır, fontları anasayfayla eşitle */
+.menu-page *:not(.nd-header):not(.nd-header *) {
+  font-style: normal !important;
+}
+
+/* Cormorant ile yazılmış açıklama ve küçük yazıları Montserrat yap */
+.menu-page p,
+.menu-page span:not(.nd-header *) {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+/* Büyük başlıklar Playfair Display kalsın */
+.menu-page h1,
+.menu-page h2,
+.menu-page h3 {
+  font-family: "Playfair Display", serif !important;
+}
+.menu-page .ÜRÜN-ADI-SINIFI {
+  font-family: "Playfair Display", serif !important;
+  font-weight: 700 !important;
+  font-size: 1.4rem !important;
+  color: #fff !important;
+}
+
+.menu-page .ACIKLAMA-SINIFI {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 0.95rem !important;
+  line-height: 1.7 !important;
+  color: #8a9bb0 !important;
+}
+/* Menü sayfası: ürün adı ve açıklamayı anasayfayla eşitle */
+.menu-page .menu-item .item-name {
+  font-family: "Playfair Display", serif !important;
+  font-weight: 700 !important;
+  font-size: 1.6rem !important;
+  color: #fff !important;
+}
+
+.menu-page .menu-item .item-desc {
+  font-family: "Montserrat", sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  line-height: 1.7 !important;
+  color: #8a9bb0 !important;
+}

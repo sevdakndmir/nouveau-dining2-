@@ -9,25 +9,14 @@
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
 <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
 <link rel="manifest" href="assets/favicon/site.webmanifest">
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&display=swap">
     <!-- CSS Bağlantısı -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body style="background-color: #000000; color: #ffffff; margin: 0; font-family: sans-serif;">
 
-    <!-- ÜST MENÜ (NAVBAR) -->
-    <header class="navbar" style="position: relative; background: #161616;">
-        <div class="logo-container">
-            <span class="logo-text">ND</span>
-            <span class="brand-name">NOUVEAU DINING</span>
-        </div>
-        <nav class="nav-links">
-            <a href="index.html">ANASAYFA</a>
-            <a href="hakkimizda.html">HAKKIMIZDA</a>
-            <a href="menu.html">MENÜ</a>
-            <a href="rezervasyon.html" class="active">REZERVASYON</a>
-            <a href="iletisim.html">İLETİŞİM</a>
-        </nav>
-    </header>
+    <div id="site-header"></div>
 
     <!-- MASA REZERVASYONU BÖLÜMÜ -->
     <section id="rezervasyon" class="reservation-section" style="padding: 80px 20px; background-color: #000; color: #fff; text-align: center;">
@@ -233,5 +222,6 @@
             tempSelectedTable = "";
         }
     </script>
+    <script src="nav.js"></script>
 </body>
 </html>
