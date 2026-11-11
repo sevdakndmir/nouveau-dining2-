@@ -7,26 +7,36 @@
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&display=swap">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;1,500;1,700&display=swap" rel="stylesheet">
-    
-    <link rel="icon" href="assets/favicon/favicon.ico">
+     <link rel="icon" href="assets/favicon/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+<link rel="stylesheet" href="nav.css">
 <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
 <link rel="manifest" href="assets/favicon/site.webmanifest">
 
-    <!-- CSS Bağlantısı -->
-
-    <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="nav.css">
+     <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&display=swap">
+<link rel="stylesheet" href="nav.css">
 </head>
 <body>
 
-   <!-- ÜST MENÜ (NAVBAR) -->
-<div id="site-header"></div>
+  <header class="nd-header">
+  <nav class="nd-nav">
+    <a class="nd-logo" href="index.html">
+      <span class="nd-logo-mark">ND</span>
+      <span class="nd-logo-text">Nouveau Dining</span>
+    </a>
+    <ul class="nd-links">
+      <li><a href="index.html" class="active">Anasayfa</a></li>
+      <li><a href="hakkimizda.html">Hakkımızda</a></li>
+      <li><a href="menu.html">Menü</a></li>
+      <li><a href="rezervasyon.html">Rezervasyon</a></li>
+      <li><a href="iletisim.html">İletişim</a></li>
+    </ul>
+  </nav>
+</header>
 
     <!-- ANA SAYFA HERO ALANI -->
     <section class="hero-section">
@@ -446,21 +456,6 @@
             tempSelectedTable = "";
         }
     </script>
-    <header class="nd-header">
-  <nav class="nd-nav">
-    <a class="nd-logo" href="index.html">
-      <span class="nd-logo-mark">ND</span>
-      <span class="nd-logo-text">Nouveau Dining</span>
-    </a>
-    <ul class="nd-links">
-      <li><a href="index.html" class="active">Anasayfa</a></li>
-      <li><a href="hakkimizda.html">Hakkımızda</a></li>
-      <li><a href="menu.html">Menü</a></li>
-      <li><a href="rezervasyon.html">Rezervasyon</a></li>
-      <li><a href="iletisim.html">İletişim</a></li>
-    </ul>
-  </nav>
-</header>
     <script src="footer.js"></script>
 
 </body>
