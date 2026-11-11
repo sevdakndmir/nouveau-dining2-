@@ -13,6 +13,88 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:ital,wght@1,600&display=swap">
     <!-- CSS Bağlantısı -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- KROKİ MODAL STİLLERİ (istersen css/style.css dosyasının sonuna taşıyabilirsin) -->
+    <style>
+        .kroki-overlay {
+            --gold: #c5a059; --gold-soft: rgba(197,160,89,.2);
+            --bg: #141414; --line: #2e2e2e; --text: #f2efe8; --muted: #8d8d8d;
+            display: none; position: fixed; inset: 0; z-index: 999999;
+            background: rgba(0,0,0,.82); backdrop-filter: blur(4px);
+            justify-content: center; align-items: center; padding: 16px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .kroki-overlay.open { display: flex; }
+        .kroki-dialog {
+            background: var(--bg); color: var(--text); width: 100%; max-width: 1000px; max-height: 94vh;
+            border: 1px solid var(--line); border-radius: 14px; display: flex; flex-direction: column;
+            box-shadow: 0 24px 60px rgba(0,0,0,.6); animation: krokiIn .22s ease;
+        }
+        @keyframes krokiIn { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+
+        .kroki-head { display: flex; align-items: center; gap: 16px; padding: 16px 24px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+        .kroki-head h3 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; font-weight: 600; margin-right: auto; }
+        .kroki-legend { display: flex; gap: 18px; font-size: 12px; color: var(--muted); }
+        .kroki-legend span { display: inline-flex; align-items: center; gap: 7px; }
+        .kroki-legend i { width: 12px; height: 12px; border-radius: 3px; border: 1.5px solid #666; background: #222; }
+        .kroki-legend .sel { border-color: var(--gold); background: var(--gold); }
+        .kroki-legend .full { background: repeating-linear-gradient(45deg, #2a2a2a 0 3px, #1b1b1b 3px 6px); border-color: #333; }
+        .kroki-close { background: none; border: 1px solid var(--line); color: var(--muted); width: 34px; height: 34px; border-radius: 50%; font-size: 20px; line-height: 1; cursor: pointer; transition: .2s; }
+        .kroki-close:hover { color: var(--gold); border-color: var(--gold); }
+
+        .kroki-body { padding: 18px 24px; overflow: auto; }
+        .kroki-hint { font-size: 12.5px; color: var(--muted); margin-bottom: 12px; }
+        .kroki-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: #101010; }
+        #krokiPlan { display: block; width: 100%; min-width: 700px; height: auto; font-family: 'Montserrat', sans-serif; }
+
+        /* plan elemanları */
+        #krokiPlan .zone { fill: rgba(255,255,255,.02); stroke: #3a3a3a; stroke-width: 1.2; stroke-dasharray: 5 5; }
+        #krokiPlan .zone.vip { fill: rgba(197,160,89,.06); stroke: rgba(197,160,89,.5); }
+        #krokiPlan .zone-label { fill: var(--gold); font-size: 12px; font-weight: 600; letter-spacing: .3px; }
+        #krokiPlan .deco { fill: #1d1d1d; stroke: #4a4a4a; stroke-width: 1.2; }
+        #krokiPlan .deco.gold { fill: #241f14; stroke: var(--gold); }
+        #krokiPlan .deco-text { fill: #b9b9b9; font-size: 11px; text-anchor: middle; }
+        #krokiPlan .deco-text.gold { fill: var(--gold); font-weight: 600; }
+        #krokiPlan .stool { fill: #2c2c2c; stroke: #555; stroke-width: 1; }
+        #krokiPlan .glass { fill: rgba(150,200,230,.35); }
+        #krokiPlan .plant { fill: #26382b; stroke: #3b5a43; stroke-width: 1; }
+
+        /* masalar */
+        #krokiPlan .tbl { cursor: pointer; outline: none; }
+        #krokiPlan .tbl .shape { fill: #222; stroke: #5a5a5a; stroke-width: 1.6; transition: stroke .2s, fill .2s; }
+        #krokiPlan .tbl .chair { fill: #333; stroke: #4d4d4d; stroke-width: 1; transition: fill .2s, stroke .2s; }
+        #krokiPlan .tbl .t-name { fill: var(--text); font-size: 14px; font-weight: 600; text-anchor: middle; }
+        #krokiPlan .tbl .t-sub { fill: var(--muted); font-size: 11px; text-anchor: middle; }
+        #krokiPlan .tbl .badge { display: none; }
+        #krokiPlan .tbl:hover .shape { stroke: var(--gold); }
+        #krokiPlan .tbl:focus-visible .shape { stroke: #fff; stroke-dasharray: 4 3; }
+        #krokiPlan .tbl.vip .t-name { fill: var(--gold); }
+        #krokiPlan .tbl.bar .shape { fill: #241f14; stroke: rgba(197,160,89,.6); }
+        #krokiPlan .tbl.bar .t-name { fill: var(--gold); font-size: 12px; }
+        #krokiPlan .tbl.bar.selected .shape { fill: var(--gold-soft); }
+        #krokiPlan .tbl.bar .chair { fill: #2c2c2c; }
+        #krokiPlan .tbl.selected .shape { fill: var(--gold-soft); stroke: var(--gold); stroke-width: 2.6; }
+        #krokiPlan .tbl.selected .chair { fill: var(--gold); stroke: var(--gold); }
+        #krokiPlan .tbl.selected .t-sub { fill: var(--gold); }
+        #krokiPlan .tbl.selected .badge { display: block; }
+        #krokiPlan .tbl.full { cursor: not-allowed; }
+        #krokiPlan .tbl.full .shape { fill: url(#hatch); stroke: #333; }
+        #krokiPlan .tbl.full .chair { fill: #232323; stroke: #2e2e2e; }
+        #krokiPlan .tbl.full .t-name, #krokiPlan .tbl.full .t-sub { fill: #5e5e5e; }
+        #krokiPlan .tbl.full:hover .shape { stroke: #333; }
+
+        .kroki-foot { display: flex; align-items: center; gap: 12px; padding: 16px 24px; border-top: 1px solid var(--line); flex-wrap: wrap; }
+        .kroki-current { margin-right: auto; font-size: 13px; color: var(--muted); }
+        .kroki-current b { color: var(--gold); font-weight: 600; }
+        .kroki-btn { padding: 12px 24px; border-radius: 6px; font: 600 13px 'Montserrat', sans-serif; cursor: pointer; border: 1px solid var(--line); background: transparent; color: var(--text); transition: .2s; }
+        .kroki-btn:hover { border-color: #666; }
+        .kroki-btn.primary { background: var(--gold); border-color: var(--gold); color: #111; }
+        .kroki-btn.primary:hover:not(:disabled) { filter: brightness(1.08); }
+        .kroki-btn:disabled { opacity: .4; cursor: not-allowed; }
+        .kroki-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+        @media (max-width: 820px) { .kroki-legend { order: 3; width: 100%; } }
+        @media (prefers-reduced-motion: reduce) { .kroki-dialog { animation: none; } }
+    </style>
 </head>
 <body style="background-color: #000000; color: #ffffff; margin: 0; font-family: sans-serif;">
 
@@ -69,85 +151,28 @@
     </section>
 
     <!-- RESTORAN KROKİ MODALİ -->
-    <div id="mapModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 999999; justify-content: center; align-items: center; padding: 15px;">
-        <div style="background: #f4f7f9; color: #333; max-width: 950px; width: 100%; border-radius: 12px; padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); position: relative; max-height: 92vh; overflow-y: auto;">
-            
-            <!-- Üst Bilgilendirme -->
-            <div style="display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 12px 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; flex-wrap: wrap; gap: 10px;">
-                <div style="display: flex; gap: 20px; align-items: center; font-size: 13px; color: #666;">
-                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #fff; border: 2px solid #ccc; border-radius: 3px;"></span> Boş Masa</span>
-                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #fff3d1; border: 2px solid #e6b800; border-radius: 3px;"></span> Seçili Masa</span>
-                    <span style="display: flex; align-items: center; gap: 6px;"><span style="width: 14px; height: 14px; background: #e0e6ed; border: 2px solid #cbd5e1; border-radius: 3px;"></span> Dolu / Rezerve</span>
+    <div id="mapModal" class="kroki-overlay" role="dialog" aria-modal="true" aria-labelledby="krokiTitle" onclick="if(event.target===this) closeMapModal()">
+        <div class="kroki-dialog">
+
+            <div class="kroki-head">
+                <h3 id="krokiTitle">Masanızı seçin</h3>
+                <div class="kroki-legend">
+                    <span><i></i>Boş</span>
+                    <span><i class="sel"></i>Seçili</span>
+                    <span><i class="full"></i>Dolu</span>
                 </div>
-                <div style="font-size: 12px; color: #888; font-style: italic;">💡 İpucu: Pencere kenarları ve bahçe alanı popüler tercihlerdir.</div>
-                <button type="button" onclick="closeMapModal()" style="background: none; border: none; font-size: 24px; cursor: pointer; color: #888; margin-left: auto;">&times;</button>
+                <button type="button" class="kroki-close" onclick="closeMapModal()" aria-label="Kapat">&times;</button>
             </div>
 
-            <!-- IZGARA PLANI CANVAS -->
-            <div style="background-color: #f7fafc; background-image: radial-gradient(#dce4ec 1px, transparent 1px); background-size: 16px 16px; border: 2px solid #e2e8f0; border-radius: 10px; padding: 25px; position: relative; min-height: 480px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; align-items: center;">
-                
-                <div style="position: absolute; top: 15px; left: 15px; background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">🌿 BAHÇE & TERAS ALANI</div>
-                <div style="position: absolute; top: 15px; right: 15px; background: #fef3c7; color: #b45309; border: 1px solid #fde68a; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">👑 VIP SALON & BAR</div>
-                <div style="position: absolute; bottom: 15px; left: 15px; background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; font-weight: bold; font-size: 12px; padding: 6px 12px; border-radius: 6px;">🖼️ PANORAMİK CAM KENARI</div>
-                
-                <div style="position: absolute; top: 70px; right: 15px; background: #1e293b; color: #38bdf8; font-weight: bold; font-size: 12px; padding: 10px 16px; border-radius: 8px;">🍸 KOKTEYL BAR & MAHZEN</div>
-                <div style="position: absolute; bottom: 20px; right: 15px; background: #4c1d95; color: #e9d5ff; font-weight: bold; font-size: 12px; padding: 12px 18px; border-radius: 10px; text-align: center;">🎷 PIANO & SAHNE<br><small style="font-weight: normal; font-size: 10px;">Canlı Müzik</small></div>
-
-                <!-- SOL SÜTUN -->
-                <div style="display: flex; flex-direction: column; gap: 40px; align-items: center; margin-top: 40px;">
-                    <div class="kroki-card" onclick="selectCardMasa('Masa 01 (Teras • 4 Kişilik)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 12px; padding: 15px 25px; text-align: center; cursor: pointer; width: 130px;">
-                        <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 01</strong>
-                        <small style="color: #64748b; font-size: 11px;">Teras • 4 Kişilik</small>
-                    </div>
-
-                    <div style="position: relative; background: #e2e8f0; border: 2px solid #cbd5e1; border-radius: 12px; padding: 20px 25px; text-align: center; opacity: 0.6; width: 130px; cursor: not-allowed;">
-                        <strong style="display: block; font-size: 14px; color: #64748b;">Masa 02</strong>
-                        <small style="color: #94a3b8; font-size: 11px; font-weight: bold;">REZERVE</small>
-                    </div>
-
-                    <div class="kroki-card" onclick="selectCardMasa('Masa 03 (Cam • 2 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 110px; height: 110px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
-                        <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 03</strong>
-                        <small style="color: #64748b; font-size: 10px;">Cam • 2 Kişi</small>
-                    </div>
-                </div>
-
-                <!-- ORTA SÜTUN -->
-                <div style="display: flex; flex-direction: column; gap: 35px; align-items: center; margin-top: 20px;">
-                    <div class="kroki-card" onclick="selectCardMasa('Masa 04 (Ana Salon • 4 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 130px; height: 130px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
-                        <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 04</strong>
-                        <small style="color: #64748b; font-size: 11px;">Ana Salon • 4 Kişi</small>
-                    </div>
-
-                    <div class="kroki-card" onclick="selectCardMasa('Masa 05 (Grup / Aile • 6 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 14px; padding: 18px 30px; text-align: center; cursor: pointer; width: 150px;">
-                        <strong style="display: block; font-size: 14px; color: #1e293b;">Masa 05</strong>
-                        <small style="color: #64748b; font-size: 11px;">Grup / Aile • 6 Kişi</small>
-                    </div>
-
-                    <div class="kroki-card" onclick="selectCardMasa('Masa 06 (Şömine Yanı • 2 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 10px; padding: 15px; text-align: center; cursor: pointer; width: 100px;">
-                        <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 06</strong>
-                        <small style="color: #e11d48; font-size: 10px; font-weight: bold;">🔥 Şömine</small>
-                    </div>
-                </div>
-
-                <!-- SAĞ SÜTUN -->
-                <div style="display: flex; flex-direction: column; gap: 50px; align-items: center; margin-top: 60px;">
-                    <div class="kroki-card" onclick="selectCardMasa('Masa 07 (VIP Özel Bölüm • 8+ Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 16px; padding: 22px; text-align: center; cursor: pointer; width: 160px;">
-                        <strong style="display: block; font-size: 14px; color: #b45309;">👑 Masa 07 (VIP)</strong>
-                        <small style="color: #d97706; font-size: 11px;">Özel Bölüm • 8+ Kişi</small>
-                    </div>
-
-                    <div class="kroki-card" onclick="selectCardMasa('Masa 08 (Sahne Önü • 4 Kişi)', this)" style="position: relative; background: #fff; border: 2px solid #cbd5e1; border-radius: 50%; width: 115px; height: 115px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; cursor: pointer;">
-                        <strong style="display: block; font-size: 13px; color: #1e293b;">Masa 08</strong>
-                        <small style="color: #64748b; font-size: 10px;">🎷 Sahne Önü</small>
-                    </div>
-                </div>
-
+            <div class="kroki-body">
+                <p class="kroki-hint">Pencere kenarları ve bahçe alanı en çok tercih edilen bölgelerdir. Bir masaya tıklayarak seçin.</p>
+                <div class="kroki-scroll"><svg id="krokiPlan" viewBox="0 0 900 560" role="group" aria-label="Restoran krokisi"></svg></div>
             </div>
 
-            <!-- Alt Butonlar -->
-            <div style="margin-top: 20px; display: flex; justify-content: flex-end; gap: 10px;">
-                <button type="button" onclick="closeMapModal()" style="padding: 12px 24px; background: #e2e8f0; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: #475569;">İptal</button>
-                <button type="button" onclick="confirmMasaSelection()" style="padding: 12px 30px; background: #c5a059; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; color: #111;">Masa Seçimini Onayla</button>
+            <div class="kroki-foot">
+                <div class="kroki-current" id="krokiCurrent">Henüz masa seçilmedi</div>
+                <button type="button" class="kroki-btn" onclick="closeMapModal()">İptal</button>
+                <button type="button" class="kroki-btn primary" id="krokiConfirm" onclick="confirmMasaSelection()" disabled>Masa seçimini onayla</button>
             </div>
         </div>
     </div>
@@ -156,31 +181,140 @@
     <script>
         var tempSelectedTable = "";
 
+        /* ---- Kroki verisi: masa eklemek / taşımak için sadece burayı düzenle ---- */
+        // shape: 'rect' (cx, cy, w, h, ch = {t,b,l,r} kenarlardaki sandalye sayısı) | 'circle' (cx, cy, r, n)
+        var ZONES = [
+            { x: 20,  y: 20,  w: 230, h: 350, label: 'Bahçe & Teras' },
+            { x: 20,  y: 385, w: 230, h: 155, label: 'Panoramik cam kenarı' },
+            { x: 270, y: 20,  w: 370, h: 520, label: 'Ana Salon' },
+            { x: 660, y: 20,  w: 220, h: 290, label: 'VIP salon & bar', vip: true },
+            { x: 660, y: 325, w: 220, h: 215, label: 'Piano & sahne' }
+        ];
+
+        var TABLES = [
+            { name: 'Masa 01', seats: '4',  label: 'Masa 01 (Teras • 4 Kişilik)',         shape: 'rect',   cx: 135, cy: 120, w: 110, h: 70,  ch: { t: 2, b: 2 } },
+            { name: 'Masa 02', seats: '4',  full: true,                                    shape: 'rect',   cx: 135, cy: 250, w: 110, h: 70,  ch: { t: 2, b: 2 } },
+            { name: 'Masa 03', seats: '2',  label: 'Masa 03 (Cam • 2 Kişi)',               shape: 'circle', cx: 135, cy: 468, r: 40, n: 2 },
+            { name: 'Masa 04', seats: '4',  label: 'Masa 04 (Ana Salon • 4 Kişi)',         shape: 'circle', cx: 455, cy: 140, r: 52, n: 4 },
+            { name: 'Masa 05', seats: '6',  label: 'Masa 05 (Grup / Aile • 6 Kişi)',       shape: 'rect',   cx: 455, cy: 300, w: 170, h: 76,  ch: { t: 3, b: 3 } },
+            { name: 'Masa 06', seats: '2',  label: 'Masa 06 (Şömine Yanı • 2 Kişi)',       shape: 'rect',   cx: 455, cy: 440, w: 70,  h: 56,  ch: { l: 1, r: 1 } },
+            { name: 'Masa 07', seats: '8+', label: 'Masa 07 (VIP Özel Bölüm • 8+ Kişi)',   shape: 'rect',   cx: 770, cy: 215, w: 180, h: 90,  ch: { t: 4, b: 4 }, vip: true },
+            { name: 'Kokteyl bar & mahzen', seats: '6', label: 'Bar Tezgahı (Kokteyl Bar & Mahzen • 6 Kişi)', shape: 'bar', cx: 770, cy: 72, w: 180, h: 32, n: 6, bar: true },
+            { name: 'Masa 08', seats: '4',  label: 'Masa 08 (Sahne Önü • 4 Kişi)',         shape: 'circle', cx: 770, cy: 412, r: 38, n: 4 }
+        ];
+
+        function chairRect(x, y, w, h) { return '<rect class="chair" x="' + (x - w / 2) + '" y="' + (y - h / 2) + '" width="' + w + '" height="' + h + '" rx="4"/>'; }
+        function spread(n, len, c, i) { return c - len / 2 + len * (i + 0.5) / n; }
+
+        function tableSvg(t, idx) {
+            var out = '', cls = 'tbl' + (t.vip ? ' vip' : '') + (t.bar ? ' bar' : '') + (t.full ? ' full' : '');
+            var attrs = t.full
+                ? ' aria-disabled="true" aria-label="' + t.name + ', dolu"'
+                : ' tabindex="0" role="button" aria-pressed="false" aria-label="' + t.label + '" data-label="' + t.label + '"';
+            out += '<g class="' + cls + '" id="tbl' + idx + '"' + attrs + '>';
+            var bx, by;
+            if (t.shape === 'rect') {
+                var c = t.ch || {};
+                for (var i = 0; i < (c.t || 0); i++) out += chairRect(spread(c.t, t.w - 20, t.cx, i), t.cy - t.h / 2 - 9, 24, 9);
+                for (i = 0; i < (c.b || 0); i++) out += chairRect(spread(c.b, t.w - 20, t.cx, i), t.cy + t.h / 2 + 9, 24, 9);
+                for (i = 0; i < (c.l || 0); i++) out += chairRect(t.cx - t.w / 2 - 9, spread(c.l, t.h - 16, t.cy, i), 9, 24);
+                for (i = 0; i < (c.r || 0); i++) out += chairRect(t.cx + t.w / 2 + 9, spread(c.r, t.h - 16, t.cy, i), 9, 24);
+                out += '<rect class="shape" x="' + (t.cx - t.w / 2) + '" y="' + (t.cy - t.h / 2) + '" width="' + t.w + '" height="' + t.h + '" rx="12"/>';
+                bx = t.cx + t.w / 2 - 4; by = t.cy - t.h / 2 + 4;
+            } else if (t.shape === 'bar') {
+                for (var j = 0; j < t.n; j++) out += '<circle class="chair" cx="' + spread(t.n, t.w - 24, t.cx, j).toFixed(1) + '" cy="' + (t.cy + t.h / 2 + 20) + '" r="8"/>';
+                out += '<rect class="shape" x="' + (t.cx - t.w / 2) + '" y="' + (t.cy - t.h / 2) + '" width="' + t.w + '" height="' + t.h + '" rx="8"/>';
+                bx = t.cx + t.w / 2 - 2; by = t.cy - t.h / 2 + 2;
+            } else {
+                for (var k = 0; k < t.n; k++) {
+                    var a = (-90 + 360 / t.n * k) * Math.PI / 180;
+                    out += '<circle class="chair" cx="' + (t.cx + Math.cos(a) * (t.r + 11)).toFixed(1) + '" cy="' + (t.cy + Math.sin(a) * (t.r + 11)).toFixed(1) + '" r="7"/>';
+                }
+                out += '<circle class="shape" cx="' + t.cx + '" cy="' + t.cy + '" r="' + t.r + '"/>';
+                bx = t.cx + t.r * 0.72; by = t.cy - t.r * 0.72;
+            }
+            var ny = t.bar ? t.cy + 5 : t.cy - 1, sy = t.bar ? t.cy + t.h / 2 + 44 : t.cy + 15;
+            out += '<text class="t-name" x="' + t.cx + '" y="' + ny + '">' + t.name + '</text>';
+            out += '<text class="t-sub" x="' + t.cx + '" y="' + sy + '">' + (t.full ? 'Rezerve' : t.seats + ' kişi') + '</text>';
+            out += '<g class="badge"><circle cx="' + bx + '" cy="' + by + '" r="10" fill="#c5a059"/><path d="M' + (bx - 4.5) + ' ' + by + 'l3.2 3.4 5.8-6.8" stroke="#111" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>';
+            return out + '</g>';
+        }
+
+        function renderKroki() {
+            var svg = document.getElementById('krokiPlan');
+            var h = '<defs>' +
+                '<pattern id="dots" width="18" height="18" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#242424"/></pattern>' +
+                '<pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="8" height="8" fill="#1a1a1a"/><rect width="3" height="8" fill="#242424"/></pattern>' +
+                '</defs>';
+            h += '<rect width="900" height="560" fill="url(#dots)"/>';
+            h += '<rect x="8" y="8" width="884" height="544" rx="14" fill="none" stroke="#3a3a3a" stroke-width="2"/>';
+
+            // bölgeler
+            ZONES.forEach(function (z) {
+                h += '<rect class="zone' + (z.vip ? ' vip' : '') + '" x="' + z.x + '" y="' + z.y + '" width="' + z.w + '" height="' + z.h + '" rx="12"/>';
+                h += '<text class="zone-label" x="' + (z.x + 14) + '" y="' + (z.y + 24) + '">' + z.label + '</text>';
+            });
+
+            // bahçe bitkileri
+            [[40, 340], [228, 340], [228, 56]].forEach(function (p) { h += '<circle class="plant" cx="' + p[0] + '" cy="' + p[1] + '" r="11"/>'; });
+
+            // cam kenarı (sol duvar boyunca pencere)
+            h += '<rect class="glass" x="14" y="392" width="8" height="140" rx="2"/>';
+
+            // şömine
+            h += '<rect class="deco gold" x="410" y="506" width="90" height="28" rx="6"/><text class="deco-text gold" x="455" y="524">Şömine</text>';
+
+            // sahne
+            h += '<rect class="deco gold" x="680" y="482" width="180" height="44" rx="8"/><text class="deco-text gold" x="770" y="500">Piano & sahne</text><text class="deco-text" x="770" y="516">Canlı müzik</text>';
+
+            // masalar
+            TABLES.forEach(function (t, idx) { h += tableSvg(t, idx); });
+            svg.innerHTML = h;
+
+            // olaylar
+            svg.querySelectorAll('.tbl:not(.full)').forEach(function (g) {
+                g.addEventListener('click', function () { selectCardMasa(g.dataset.label, g); });
+                g.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectCardMasa(g.dataset.label, g); }
+                });
+            });
+        }
+
+        function updateFooter() {
+            var cur = document.getElementById('krokiCurrent');
+            var btn = document.getElementById('krokiConfirm');
+            if (tempSelectedTable) {
+                cur.innerHTML = 'Seçilen: <b>' + tempSelectedTable + '</b>';
+                btn.disabled = false;
+            } else {
+                cur.textContent = 'Henüz masa seçilmedi';
+                btn.disabled = true;
+            }
+        }
+
         function openMapModal() {
             var modal = document.getElementById('mapModal');
-            if (modal) {
-                modal.style.display = 'flex';
-            }
+            if (!modal) return;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            updateFooter();
         }
 
         function closeMapModal() {
             var modal = document.getElementById('mapModal');
-            if (modal) {
-                modal.style.display = 'none';
-            }
+            if (modal) modal.classList.remove('open');
+            document.body.style.overflow = '';
         }
 
         function selectCardMasa(tableName, cardElement) {
             tempSelectedTable = tableName;
-            var cards = document.querySelectorAll('.kroki-card');
-            for (var i = 0; i < cards.length; i++) {
-                cards[i].style.background = "#ffffff";
-                cards[i].style.borderColor = "#cbd5e1";
-                cards[i].style.boxShadow = "none";
-            }
-            cardElement.style.background = "#fff3d1";
-            cardElement.style.borderColor = "#fbbf24";
-            cardElement.style.boxShadow = "0 0 15px rgba(251, 191, 36, 0.6)";
+            document.querySelectorAll('#krokiPlan .tbl').forEach(function (c) {
+                c.classList.remove('selected');
+                c.setAttribute('aria-pressed', 'false');
+            });
+            cardElement.classList.add('selected');
+            cardElement.setAttribute('aria-pressed', 'true');
+            updateFooter();
         }
 
         function confirmMasaSelection() {
@@ -220,8 +354,15 @@
             document.getElementById('selectedTableInput').value = "";
             document.getElementById('selectedTableBadge').style.display = "none";
             tempSelectedTable = "";
+            document.querySelectorAll('#krokiPlan .tbl').forEach(function (c) { c.classList.remove('selected'); c.setAttribute('aria-pressed', 'false'); });
+            updateFooter();
         }
+
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMapModal(); });
+        renderKroki();
+        updateFooter();
     </script>
     <script src="nav.js"></script>
+    <script src="footer.js"></script>
 </body>
 </html>
